@@ -2,8 +2,19 @@ import java.util.Scanner;
 
 public class PlataformaCine {
     public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+
         Pelicula[] peliculas = crearPeliculas();
-        consultarPeliculas(peliculas);
+        mostrarListaGeneral(peliculas);
+
+        System.out.print("\n¿Qué película deseas consultar? (1-5): ");
+        int opcion = entrada.nextInt();
+
+        if (opcion >= 1 && opcion <= peliculas.length) {
+            mostrarDetallePelicula(peliculas[opcion - 1]);
+        } else {
+            System.out.println("Opción no válida.");
+        }
     }
 
     public static Pelicula[] crearPeliculas() {
@@ -21,20 +32,6 @@ public class PlataformaCine {
             new Director("Neil Burger", "Estados Unidos"));
 
         return peliculas;
-    }
-
-    public static void consultarPeliculas(Pelicula[] peliculas) {
-        Scanner entrada = new Scanner(System.in);
-        mostrarListaGeneral(peliculas);
-
-        System.out.print("\n¿Qué película deseas consultar? (1-5): ");
-        int opcion = entrada.nextInt();
-
-        if (opcion >= 1 && opcion <= peliculas.length) {
-            mostrarDetallePelicula(peliculas[opcion - 1]);
-        } else {
-            System.out.println("Opción no válida.");
-        }
     }
 
     public static void mostrarListaGeneral(Pelicula[] peliculas) {
